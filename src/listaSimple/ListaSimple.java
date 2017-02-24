@@ -46,16 +46,17 @@ public class ListaSimple {
 		tamaño++;
 	}
 	
-	public void insertarFinal(Nodo n){
-		Nodo auxiliar = this.inicio;
-		
-		if(this.inicio==null) insertarInicio(n);
-		while(auxiliar.getSiguiente()!=null){
-			auxiliar=auxiliar.getSiguiente();
+	public void insertarFinal(Nodo nodo){
+		if(inicio == null) insertarInicio(nodo);
+		else{
+			Nodo aux = inicio;
+			while(aux.getSiguiente()!=null){
+				aux = aux.getSiguiente();
+			
+			}
+			aux.setSiguiente(nodo);
+			tamaño++;
 		}
-		
-		auxiliar.setSiguiente(n);
-		this.tamaño=this.tamaño+1;
 	}
 	
 	public boolean insertarNodo(Nodo n, int posicion){
@@ -129,34 +130,73 @@ public class ListaSimple {
 		
 		if(this.tamaño<posicion || posicion<0) return false;
 		
-		if(this.tamaño==posicion){
-			insertarFinal(null);
+		if((this.tamaño-1)==posicion){
+			borrarUltimo();
 			return true;
 		}
 		
 		if(posicion==0){
-			insertarInicio(null);
-			return true;
-		}else{
-		
-			while(i<(posicion-1)){
-				auxiliar=auxiliar.getSiguiente();
-				i++;
-			}
-			i=0;
-			while(i<(posicion+1)){
-				n=n.getSiguiente();
-				i++;
-			}
-			
-		
-			
-			n.setSiguiente(auxiliar.getSiguiente());
-			auxiliar.setSiguiente(n);
-			this.tamaño--;
-		
+			borrarInicio();
 			return true;
 		}
 		
+		do{
+			auxiliar=auxiliar.getSiguiente();
+			i++;
+		}while(i<(posicion-1));
+		i=0;
+		do{
+			n=n.getSiguiente();
+			i++;
+		}while(i!=(posicion+1));
+			
+		
+			
+		auxiliar.setSiguiente(n);
+		this.tamaño--;
+		
+		return true;	
+	}
+	
+	public int buscar(Nodo n){
+		int posicion = 0;
+		boolean encontrado = false;
+		Nodo aux = inicio;
+		while(aux!=null & !encontrado){
+			if(aux.esIgual(n)){
+				encontrado=true;
+				return posicion;
+			}else{
+				aux = aux.getSiguiente();
+				posicion++;
+			}
+		}
+		if(encontrado)
+			return posicion;
+		else
+			return -1;
+	}
+	
+	public ListaSimple buscarTodos(Nodo n){
+		ListaSimple resultado = new ListaSimple();
+		int posicion = 0;
+		Nodo aux = inicio;
+		
+		while(aux!=null){
+			if(aux.esIgual(n)){
+				resultado.insertarInicio(new Nodo(posicion));
+			}
+			posicion++;
+			aux=aux.getSiguiente();
+		}
+		return resultado;
+	}
+	
+	public void eliminarTodos(Nodo n){
+		Nodo auxiliar = buscarTodos(n).getInicio();
+		while(auxiliar!=null){
+			borrarNodo(auxiliar.getDato());
+			auxiliar=auxiliar.getSiguiente();
+		}
 	}
 }
