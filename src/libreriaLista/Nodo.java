@@ -1,20 +1,20 @@
 package libreriaLista;
 
 public class Nodo {
-	private Libro dato;
+	private Libro libro;
 	private Nodo siguiente;
 	
 	public Nodo(Libro a){
-		this.dato=a;
+		this.libro=a;
 		this.siguiente=null;
 	}
 	
-	public Libro getDato(){
-		return this.dato;
+	public Libro getLibro(){
+		return this.libro;
 	}
 	
-	public void setDato(Libro a){
-		this.dato=a;
+	public void setLibro(Libro a){
+		this.libro=a;
 	}
 	
 	public Nodo getSiguiente(){
@@ -26,10 +26,10 @@ public class Nodo {
 	}
 	
 	public String toString(){
-		return dato.toString();
+		return libro.toString();
 	}
 	
 	public boolean esIgual(Nodo n){
-		return (this.dato==n.getDato())? true:false;
+		return (this.libro==n.getLibro())? true:false;
 	}
 }

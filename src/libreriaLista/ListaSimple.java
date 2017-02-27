@@ -26,15 +26,15 @@ public class ListaSimple {
 	}
 	
 	public String toString(){
-		String salida = "La lista contiene: \n";
+		String salida = "La biblioteca tiene: \n";
 		Nodo auxiliar = inicio;
 		
 		while(auxiliar!=null){
-			salida = salida + auxiliar.toString() + " ";
+			salida = salida + auxiliar.toString() + "\n";
 			auxiliar = auxiliar.getSiguiente();
 		}
 		
-		salida=salida+"\nLa lista contiene "+tamaño+" elementos";
+		salida=salida+"\nNúmero de libros: "+tamaño;
 		
 		
 		return salida;
@@ -122,7 +122,7 @@ public class ListaSimple {
 		return true;
 	}
 	
-	public boolean borrarNodo(Libro posicion){
+	public boolean borrarNodo(int posicion){
 		if(inicio==null) return false;
 		
 		int i=0;
@@ -177,26 +177,4 @@ public class ListaSimple {
 			return -1;
 	}
 	
-	public ListaSimple buscarTodos(Nodo n){
-		ListaSimple resultado = new ListaSimple();
-		int posicion = 0;
-		Nodo aux = inicio;
-		
-		while(aux!=null){
-			if(aux.esIgual(n)){
-				resultado.insertarInicio(new Nodo(posicion));
-			}
-			posicion++;
-			aux=aux.getSiguiente();
-		}
-		return resultado;
-	}
-	
-	public void eliminarTodos(Nodo n){
-		Nodo auxiliar = buscarTodos(n).getInicio();
-		while(auxiliar!=null){
-			borrarNodo(auxiliar.getDato());
-			auxiliar=auxiliar.getSiguiente();
-		}
-	}
 }

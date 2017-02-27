@@ -56,7 +56,8 @@ public class Libro {
 			this.prestados=prestados;
 		}
 	//-----------------------------------------|
-		
+	
+	//Interacciones----------------------------|
 		public boolean prestamo(){
 			if(this.prestados<this.numeroEjemplares){
 				this.prestados++;
