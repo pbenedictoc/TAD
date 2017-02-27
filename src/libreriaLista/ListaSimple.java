@@ -177,4 +177,14 @@ public class ListaSimple {
 			return -1;
 	}
 	
+	public Nodo obtenerNodo(int posicion){
+		Nodo auxiliar=inicio;
+		posicion--;
+		
+		while(posicion>0){
+			auxiliar=auxiliar.getSiguiente();
+			posicion--;
+		}
+		return auxiliar;
+	}
 }
