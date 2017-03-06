@@ -5,6 +5,7 @@ public class Test {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+		
 		ArbolBinario arbol;
 		Nodo a1, a2, a;
 		PilaVector pila = new PilaVector();
